@@ -4,10 +4,10 @@
 USE BankDB;
 GO
 
--- Q1: Lending overview (number of loans, total amount, average rate)
-SELECT COUNT(*)        AS LoansCount,
-       SUM(Amount)     AS TotalAmount,
-       AVG(InterestRate) AS AvgRate
+-- Q1: Lending overview (number of loans, total amount, weighted average rate)
+SELECT COUNT(*)                                 AS LoansCount,
+       SUM(Amount)                              AS TotalAmount,
+       SUM(Amount * InterestRate) / SUM(Amount) AS WeightedAvgRate
 FROM fact_loans;
 
 -- Q2: Loans by type
